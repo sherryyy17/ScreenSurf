@@ -5,6 +5,7 @@ import GridCard from '../LandingPage/sections/GridCard'
 import Favorite from '../MovieDetailPage/sections/Favorite'
 import Comment from '../MovieDetailPage/sections/Comment'
 import { Descriptions, Row, Button } from 'antd';
+import axios from 'axios';
 
 function MovieDetailPage(props) {
 
@@ -29,6 +30,18 @@ function MovieDetailPage(props) {
                         setCrew(response.cast)
                     })
             })
+
+        axios.post('/api/comment/getComments', movieId)
+            .then(response => {
+                console.log(response)
+                if (response.data.success) {
+                    console.log('response.data.comments', response.data.comments)
+                    setCommentList(response.data.comments)
+                } else {
+                    alert('Failed to get comments Info')
+                }
+            })
+
     }, [])
 
     const updateComment = (newComment) => {
