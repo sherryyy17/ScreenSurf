@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { API_URL, API_KEY, IMAGE_URL } from '../../Config'
 import MainImage from '../LandingPage/sections/MainImage'
 import GridCard from '../LandingPage/sections/GridCard'
+import Favorite from '../MovieDetailPage/sections/Favorite'
+import Comment from '../MovieDetailPage/sections/Comment'
 import { Descriptions, Row, Button } from 'antd';
 
 function MovieDetailPage(props) {
@@ -9,10 +11,10 @@ function MovieDetailPage(props) {
     const [Movie, setMovie] = useState([])
     const [Crew, setCrew] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)
+    const movieId = props.match.params.movieId
+
 
     useEffect(() => {
-
-        const movieId = props.match.params.movieId
 
         fetch(`${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
             .then(response => response.json())
@@ -43,7 +45,7 @@ function MovieDetailPage(props) {
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button> Add to Favorite</Button>
+                    <Favorite movieId={movieId} movieInfo={Movie} userFrom={localStorage.getItem('userId')} />
                 </div>
 
                 {/* movie info table */}
@@ -59,9 +61,12 @@ function MovieDetailPage(props) {
                     <Descriptions.Item label="status">{Movie.status}</Descriptions.Item>
                     <Descriptions.Item label="popularity">{Movie.popularity}</Descriptions.Item>
                 </Descriptions>
+
+                <br /><br />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Button onClick={handleClick}>Toggle Actor View</Button>
                 </div>
+                <br /><br />
 
                 {/* Grid card for crew */}
                 {ActorToggle &&
@@ -79,6 +84,8 @@ function MovieDetailPage(props) {
 
                     </Row>
                 }
+                {/*Comments*/}
+                <Comment postId={movieId} />
 
             </div>
 
