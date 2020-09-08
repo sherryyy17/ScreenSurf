@@ -26,7 +26,8 @@ function Comment(props) {
         axios.post('/api/comment/saveComment', variable)
             .then(response => {
                 if (response.data.success) {
-
+                    setComment("")
+                    props.refreshFunction(response.data.result)
                 } else {
                     alert('failed to save comment')
                 }
@@ -38,7 +39,9 @@ function Comment(props) {
             <br />
             <p>Comments</p>
             <hr />
-            <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+            {/*Comment Lists*/}
+            {console.log(props.CommentList)}
+            < form style={{ display: 'flex' }} onSubmit={onSubmit}>
                 <TextArea
                     style={{ width: "100%", borderRadius: '5px' }}
                     onChange={handleChange}
@@ -46,9 +49,9 @@ function Comment(props) {
                     placeholder="Write your Comment here"
                 />
                 <br />
-                <Button style={{ width: '20%', height: '52px' }}>Submit</Button>
+                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
             </form>
-        </div>
+        </div >
     )
 }
 

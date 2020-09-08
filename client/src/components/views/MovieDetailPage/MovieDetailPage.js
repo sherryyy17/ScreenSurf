@@ -10,6 +10,7 @@ function MovieDetailPage(props) {
 
     const [Movie, setMovie] = useState([])
     const [Crew, setCrew] = useState([])
+    const [CommentList, setCommentList] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)
     const movieId = props.match.params.movieId
 
@@ -29,6 +30,10 @@ function MovieDetailPage(props) {
                     })
             })
     }, [])
+
+    const updateComment = (newComment) => {
+        setCommentList(CommentList.concat(newComment))
+    }
 
     const handleClick = () => {
         setActorToggle(!ActorToggle)
@@ -85,7 +90,7 @@ function MovieDetailPage(props) {
                     </Row>
                 }
                 {/*Comments*/}
-                <Comment postId={movieId} />
+                <Comment CommentList={CommentList} postId={movieId} refreshFunction={updateComment} />
 
             </div>
 
