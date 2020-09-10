@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Button, Input } from 'antd';
 import { useSelector } from 'react-redux'
 import SingleComment from './SingleComment'
+import ReplyComment from './ReplyComment'
 const { TextArea } = Input;
 
 function Comment(props) {
@@ -16,6 +17,10 @@ function Comment(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (user.userData && !user.userData.isAuth) {
+            return alert('Please Log in first');
+        }
 
         const variable = {
             content: Comment,
@@ -41,12 +46,11 @@ function Comment(props) {
             <p>Comments</p>
             <hr />
             {/*Comment Lists*/}
-            {console.log(props.CommentList)}
             {props.CommentList && props.CommentList.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment>
                         <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
-                        {/* <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} /> */}
+                        <ReplyComment CommentList={props.CommentList} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} />
                     </React.Fragment>
                 )
             ))}

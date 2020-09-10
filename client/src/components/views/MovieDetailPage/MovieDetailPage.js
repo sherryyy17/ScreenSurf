@@ -15,6 +15,9 @@ function MovieDetailPage(props) {
     const [ActorToggle, setActorToggle] = useState(false)
     const movieId = props.match.params.movieId
 
+    const movieVariable = {
+        movieId: movieId
+    }
 
     useEffect(() => {
 
@@ -31,7 +34,7 @@ function MovieDetailPage(props) {
                     })
             })
 
-        axios.post('/api/comment/getComments', movieId)
+        axios.post('/api/comment/getComments', movieVariable)
             .then(response => {
                 console.log(response)
                 if (response.data.success) {
@@ -103,7 +106,7 @@ function MovieDetailPage(props) {
                     </Row>
                 }
                 {/*Comments*/}
-                <Comment CommentList={CommentList} postId={movieId} refreshFunction={updateComment} />
+                <Comment movieTitle={Movie.original_title} CommentList={CommentList} postId={movieId} refreshFunction={updateComment} />
 
             </div>
 

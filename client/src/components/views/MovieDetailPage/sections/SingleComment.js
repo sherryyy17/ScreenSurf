@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const { TextArea } = Input;
 
 function SingleComment(props) {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.user);
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)
 
@@ -27,9 +27,9 @@ function SingleComment(props) {
         const variables = {
             content: CommentValue,
             writer: user.userData._id,
+            responseTo: props.comment._id,
             postId: props.postId
         }
-        console.log(variables)
 
         axios.post('/api/comment/saveComment', variables)
             .then(response => {
@@ -70,7 +70,6 @@ function SingleComment(props) {
                         style={{ width: '100%', borderRadius: '5px' }}
                         onChange={handleChange}
                         value={CommentValue}
-                        // value={CommentValue}
                         placeholder="write some comments"
                     />
                     <br />
