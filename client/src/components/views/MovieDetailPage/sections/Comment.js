@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Button, Input } from 'antd';
+import { Button, Input, Typography } from 'antd';
 import { useSelector } from 'react-redux'
 import SingleComment from './SingleComment'
 import ReplyComment from './ReplyComment'
 const { TextArea } = Input;
+const { Title } = Typography;
 
 function Comment(props) {
     const user = useSelector(state => state.user)
@@ -43,7 +44,7 @@ function Comment(props) {
     return (
         <div>
             <br />
-            <p>Comments</p>
+            <Title level={3} > Share your opinions about {props.movieTitle} </Title>
             <hr />
             {/*Comment Lists*/}
             {props.CommentList && props.CommentList.map((comment, index) => (

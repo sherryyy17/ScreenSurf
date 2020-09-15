@@ -17,7 +17,7 @@ function ReplyComment(props) {
             }
         })
         setChildCommentNumber(commentNumber)
-    }, [])
+    }, [props.CommentList, props.parentCommentId])
 
 
     let renderReplyComment = (parentCommentId) =>
