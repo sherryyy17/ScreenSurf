@@ -4,6 +4,8 @@ A MERN stack Movie App clone that allows you tracks how well films are doing fin
 
 ![Screenshot (22)](https://user-images.githubusercontent.com/41477167/93238598-4a803b80-f79f-11ea-840e-f9391a93f97f.png)
 
+~ Load More Option
+
 ![Screenshot (18)](https://user-images.githubusercontent.com/41477167/93237888-58818c80-f79e-11ea-82f1-c580dfc00343.png)
 
 
@@ -19,8 +21,6 @@ A MERN stack Movie App clone that allows you tracks how well films are doing fin
 ~ Favorite Movie Page(you can see and remove your favorites)
 
 ![Screenshot (19)](https://user-images.githubusercontent.com/41477167/93238387-fbd2a180-f79e-11ea-9393-5fd8d690c0b7.png)
-
-
 ~ Comments View (including Like/Dislike Feature)
 
 ![Screenshot (24)](https://user-images.githubusercontent.com/41477167/93238819-916e3100-f79f-11ea-9d2e-85321f945363.png)
