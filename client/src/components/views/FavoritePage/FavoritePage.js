@@ -72,8 +72,8 @@ function FavoritePage() {
             <hr />
             {user.userData && !user.userData.isAuth ?
                 <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <p>Please Log in first...</p>
-                    <a href="/login">Go to Login page</a>
+                    <p>Please log in to continue...</p>
+                    <a href="/login">Login</a>
                 </div>
                 :
                 !Loading &&
