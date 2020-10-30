@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { API_URL, API_KEY, IMAGE_URL } from '../../Config'
 import MainImage from '../LandingPage/sections/MainImage'
 import GridCard from '../LandingPage/sections/GridCard'
+import Favorite from '../MovieDetailPage/sections/Favorite'
+import Comment from '../MovieDetailPage/sections/Comment'
 import { Descriptions, Row, Button } from 'antd';
+import axios from 'axios';
 
 function MovieDetailPage(props) {
 
     const [Movie, setMovie] = useState([])
     const [Crew, setCrew] = useState([])
+    const [CommentList, setCommentList] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)
+    const movieId = props.match.params.movieId
+
+    const movieVariable = {
+        movieId: movieId
+    }
 
     useEffect(() => {
-
-        const movieId = props.match.params.movieId
 
         fetch(`${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
             .then(response => response.json())
@@ -26,7 +33,23 @@ function MovieDetailPage(props) {
                         setCrew(response.cast)
                     })
             })
+
+        axios.post('/api/comment/getComments', movieVariable)
+            .then(response => {
+                console.log(response)
+                if (response.data.success) {
+                    console.log('response.data.comments', response.data.comments)
+                    setCommentList(response.data.comments)
+                } else {
+                    alert('Failed to get comments Info')
+                }
+            })
+
     }, [])
+
+    const updateComment = (newComment) => {
+        setCommentList(CommentList.concat(newComment))
+    }
 
     const handleClick = () => {
         setActorToggle(!ActorToggle)
@@ -43,7 +66,7 @@ function MovieDetailPage(props) {
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button> Add to Favorite</Button>
+                    <Favorite movieId={movieId} movieInfo={Movie} userFrom={localStorage.getItem('userId')} />
                 </div>
 
                 {/* movie info table */}
@@ -59,9 +82,12 @@ function MovieDetailPage(props) {
                     <Descriptions.Item label="status">{Movie.status}</Descriptions.Item>
                     <Descriptions.Item label="popularity">{Movie.popularity}</Descriptions.Item>
                 </Descriptions>
+
+                <br /><br />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Button onClick={handleClick}>Toggle Actor View</Button>
                 </div>
+                <br /><br />
 
                 {/* Grid card for crew */}
                 {ActorToggle &&
@@ -79,6 +105,8 @@ function MovieDetailPage(props) {
 
                     </Row>
                 }
+                {/*Comments*/}
+                <Comment movieTitle={Movie.original_title} CommentList={CommentList} postId={movieId} refreshFunction={updateComment} />
 
             </div>
 
