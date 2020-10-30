@@ -40,7 +40,7 @@ function LandingPage() {
             }
 
             <div style={{ width: '85%', margin: '1rem auto' }}>
-                <Title level={2} >Movies by latest</Title>
+                <Title level={2} >Latest Movies</Title>
                 <hr />
 
                 { /*Grid Card */}
