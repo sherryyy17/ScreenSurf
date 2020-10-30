@@ -1,10 +1,19 @@
 A MERN stack Movie App clone that allows you tracks how well films are doing financially (box office records) and shows their ratings, information like release date, movie runtime, status and comments(users can post their reviews and comments). An online platform for users' favorite movies discussion.
 
+To use this application, 
+
+1. make dev.js file inside config folder 
+2. put mongoURI into dev.js file after making a cloud mongo database
+3. Type  " npm install " inside the root directory  ( Download Server Dependencies ) 
+4. Type " npm install " inside the client directory ( Download Front-end Dependencies )
+5. run the app by npm run dev command
+
 ~ Home Page
 
 ![Screenshot (22)](https://user-images.githubusercontent.com/41477167/93238598-4a803b80-f79f-11ea-840e-f9391a93f97f.png)
 
 ~ Load More Option
+
 
 ![Screenshot (18)](https://user-images.githubusercontent.com/41477167/93237888-58818c80-f79e-11ea-82f1-c580dfc00343.png)
 
