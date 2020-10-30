@@ -70,7 +70,7 @@ function MovieDetailPage(props) {
                 </div>
 
                 {/* movie info table */}
-                <Descriptions title="Movie Info" bordered>
+                <Descriptions title="About Movie" bordered>
                     <Descriptions.Item label="Title">{Movie.original_title}</Descriptions.Item>
                     <Descriptions.Item label="release_date">{Movie.release_date}</Descriptions.Item>
                     <Descriptions.Item label="revenue">{Movie.revenue}</Descriptions.Item>
@@ -85,7 +85,7 @@ function MovieDetailPage(props) {
 
                 <br /><br />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button onClick={handleClick}>Toggle Actor View</Button>
+                    <Button onClick={handleClick}>Toggle View</Button>
                 </div>
                 <br /><br />
 
